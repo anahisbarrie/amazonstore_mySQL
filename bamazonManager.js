@@ -73,10 +73,10 @@ function addtoInventory() {
             message: 'Please select product you want to add: ',
             choices: productname
         }, {
-                type: 'input',
-                name: 'userInputQuantity',
-                message: 'How many you want to add? ',
-            }]
+            type: 'input',
+            name: 'userInputQuantity',
+            message: 'How many you want to add? ',
+        }]
 
         ).then(function (answer) {
             console.log(answer);
@@ -91,3 +91,49 @@ function addtoInventory() {
         });
     });
 }
+
+function addnewProduct() {
+    inquirer.prompt([
+
+        {
+            name: "id",
+            type: "input",
+            message: "Add ID Number"
+
+        },
+        {
+            name: "product_name",
+            type: "input",
+            message: "What is the name of product you would like to add to the stock?"
+        },
+        {
+            name: "department_name",
+            type: "input",
+            message: "What is the department?"
+        },
+        {
+            name: "price",
+            type: "input",
+            message: "What is the price for item?"
+        },
+        {
+            name: "stock_quantity",
+            type: "input",
+            message: "Please insert the quantity available"
+        },
+
+    ]).then(function (answers) {
+        // console.log(answers)
+        var id = answers.id;
+        var name = answers.product_name;
+        var category = answers.department_name;
+        var price = answers.price;
+        var quantity = answers.stock_quantity;
+        buildNewItem(id, name, category, price, quantity);
+    });
+};
+
+function buildNewItem(id, name, category, price, quantity) {
+    connection.query('INSERT INTO products (id,product_name,department_name,price,stock_quantity) VALUES("' + id + '","' + name + '","' + category + '",' + price + ',' + quantity + ')');
+    viewProducts();
+};
