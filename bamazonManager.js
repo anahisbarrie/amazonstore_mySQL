@@ -84,6 +84,7 @@ function addtoInventory() {
 
             var query = "UPDATE products SET `stock_quantity`=(`stock_quantity` + " + answer.userInputQuantity + ") WHERE `product_name` = '" + answer.userAnswer + "';";
             console.log(query);
+            console.table(response);
             connection.query(query, function (error, response) {
                 if (error) throw error;
                 connection.end();

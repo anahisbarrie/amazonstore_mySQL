@@ -2,7 +2,7 @@
 //npm install my-sql
 //npm init
 //npm install inquirer
-// remember to format document 
+
 
 var mysql = require("mysql");
 var inquirer = require('inquirer');
